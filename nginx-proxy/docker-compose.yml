@@ -1,0 +1,17 @@
+version: '2'
+services:
+  howe-proxy:
+    build: ./proxy
+    restart: always
+    environment:
+      - VIRTUAL_HOST=example.invalid
+      - LETSENCRYPT_HOST=example.invalid
+      - LETSENCRYPT_EMAIL=example@example.invalid
+    networks:
+      - water-proxy-network
+
+networks:
+  water-proxy-network:
+    external:
+      name: nginx-proxy
+
